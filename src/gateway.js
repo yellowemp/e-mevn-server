@@ -14,7 +14,7 @@ app.get('/add/:name', (req, res) => {
 });
 
 app.get('/update/:oldname/:newname', (req, res) => {
-  crud.update(req.params.oldname,req.params.newname,);
+  crud.update(req.params.oldname, req.params.newname,);
   return res.send('completed');
 });
 
