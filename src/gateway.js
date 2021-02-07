@@ -7,8 +7,9 @@ const app = express();
 app.use(cors());
 
 app.get('/search/:name', (req, res) => {
-  crud.search(req.params.name).then(res => console.log(res));
-  return res.send('completed');
+  crud.search(req.params.name).then(resp => {
+    res.send(resp);
+  });
 });
 
 app.get('/add/:name', (req, res) => {

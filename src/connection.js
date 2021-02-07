@@ -13,23 +13,18 @@ async function closeClient() {
 async function createListing(name) {
   object = await createClient();
   const newListing = await createObject(name);
-  const result = await object.insertOne(newListing).then(() => closeClient());
-  console.log(`New listing created with the following id: ${result.insertedId}`);
+  const result = await object.insertOne(newListing);
 }
 
 async function showAll(object) {
   return object.find({}).toArray().then(() => closeClient());
 }
 async function searchByName(name) {
-  return await createClient().then((client) => {
-    result = client.findOne({ name: name });
-    if (result) {
-      return result;
-    } else {
-      console.log('No Item Found');
-      return '';
-    }
-  });
+
+
+  let client = await createClient();
+  let result = await client.findOne({ name: name });
+  return result;
 }
 async function createObject(name) {
   return {
