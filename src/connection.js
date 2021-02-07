@@ -14,14 +14,13 @@ async function createListing(name) {
   object = await createClient();
   const newListing = await createObject(name);
   const result = await object.insertOne(newListing);
+  closeClient();
 }
 
 async function showAll(object) {
   return object.find({}).toArray().then(() => closeClient());
 }
 async function searchByName(name) {
-
-
   let client = await createClient();
   let result = await client.findOne({ name: name });
   return result;
