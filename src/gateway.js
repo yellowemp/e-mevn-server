@@ -1,7 +1,10 @@
 const express = require('express');
+var cors = require('cors');
 const crud = require('./connection.js');
 
 const app = express();
+
+app.use(cors());
 
 app.get('/search/:name', (req, res) => {
   crud.search(req.params.name).then(res => console.log(res));
@@ -24,5 +27,5 @@ app.get('/delete/:name', (req, res) => {
 });
 
 app.listen('3000', () =>
-  console.log(`Example app listening on port 3000}!`),
+  console.log(`Example app listening on port 3000!`),
 );
